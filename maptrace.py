@@ -9,6 +9,7 @@ from PIL import Image, ImageOps
 from scipy import ndimage
 # we need skimage for flood fill for -i option; TODO: consider replacing ndimage if it is more performant?
 import skimage 
+from skimage import measure
 
 ######################################################################
 
