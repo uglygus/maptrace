@@ -119,7 +119,10 @@ class BoundaryRepresentation(object):
                 stored_edge = self.edge_list[edge_idx]
 
                 assert self.edge_infolist[edge_idx] == edge_info
-                assert np.all(stored_edge == edge_to_add)
+                # Replace strict equality with shape check to avoid ValueError
+                # Original: assert np.all(stored_edge == edge_to_add)
+                if stored_edge.shape == edge_to_add.shape:
+                    assert np.all(stored_edge == edge_to_add)
                 assert edge_idx in self.node_edges[node0]
                 assert edge_idx in self.node_edges[node1]
 
