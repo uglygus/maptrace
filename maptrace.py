@@ -735,7 +735,12 @@ def get_labels_and_colors_outlined(mask, opts):
     else:
         structure = CROSS_ELEMENT
 
-    labels, num_labels = ndimage.label(mask, structure=structure)
+    num_labels, labels = measure.label(mask, return_num=True)
+
+    if num_labels == 0:
+        # Return a placeholder for empty frame
+        return 0, labels, [], np.array([])
+    
     print('found {} labels'.format(num_labels))
 
     unlabeled = ~mask
