@@ -1270,6 +1270,12 @@ def output_svg(opts, orig_shape, brep, colors):
             svg.write('</g>\n')
                 
 
+        if colors.size == 0:
+            # Empty placeholder SVG
+            svg.write(" </g>\n</svg>\n")
+            print(f"Wrote empty SVG placeholder: {opts.output_file}")
+            return
+        
         svg.write(' <g stroke="{}" stroke-linejoin="bevel" '
                   'stroke-width="{}">\n'.format(scolor, opts.stroke_width))
             
